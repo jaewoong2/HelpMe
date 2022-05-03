@@ -16,6 +16,7 @@ const Title = styled.div<{ css: SerializedStyles | undefined }>`
     left: 0;
     top: calc(100% + 5px);
     width: 25%;
+    max-width: 75px;
     height: 5px;
     background-color: ${({ theme }) => theme.color.borderBg};
   }
