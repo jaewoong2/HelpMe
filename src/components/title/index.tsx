@@ -1,4 +1,4 @@
-import * as Styled from '@components/title/title.styles';
+import * as Styled from '@components/Title/Title.styles';
 import { SerializedStyles } from '@emotion/react';
 import React from 'react';
 
