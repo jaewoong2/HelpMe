@@ -1,5 +1,6 @@
 import { SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
+import { TypoGraphy } from '@styles/typo';
 
 const Title = styled.div<{ css: SerializedStyles | undefined }>`
   width: 100%;
@@ -21,6 +22,7 @@ const Title = styled.div<{ css: SerializedStyles | undefined }>`
     background-color: ${({ theme }) => theme.color.borderBg};
   }
   ${({ css }) => css};
+  ${TypoGraphy.Title};
 `;
 
 export { Title };
