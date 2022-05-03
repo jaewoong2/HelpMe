@@ -1,8 +1,13 @@
+import Input from '@components/input';
 import React from 'react';
 
 type Props = {};
 const App = () => {
-  return <div>Hello WOrld!</div>;
+  return (
+    <div>
+      <Input title="이름" />
+    </div>
+  );
 };
 
 export default App;
