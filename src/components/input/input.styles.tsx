@@ -13,8 +13,10 @@ const Input = styled.input`
   border: none;
   background-color: ${({ theme }) => theme.color.inputBg};
   border-radius: 9px;
-  min-height: 40px;
+  min-height: 45px;
   font-size: 16px;
+  padding-left: 10px;
+  margin-top: 5px;
 `;
 
 const Title = styled.p`
