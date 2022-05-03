@@ -7,7 +7,11 @@ type DescriptionProps = {
 } & HtmlHTMLAttributes<HTMLDivElement>;
 
 const Description: React.FC<DescriptionProps> = ({ css }) => {
-  return <Container css={css}>Description</Container>;
+  return (
+    <Container css={css}>
+      <p>Description</p>
+    </Container>
+  );
 };
 
 export default Description;
