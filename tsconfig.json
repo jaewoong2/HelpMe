@@ -21,10 +21,10 @@
     "forceConsistentCasingInFileNames": true /* 같은 파일에 대한 일관되지 않은 참조를 허용하지 않을 지 여부 */,
     "baseUrl": "./src",
     "paths": {
-      "@components": ["components/*"],
-      "@styles": ["styles/*"],
-      "@utils": ["utils/*"],
-      "@hooks": ["hooks/*"]
+      "@components/*": ["components/*"],
+      "@styles/*": ["styles/*"],
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
   "include": ["./src/**/*"],
