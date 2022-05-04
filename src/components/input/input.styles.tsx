@@ -17,8 +17,12 @@ const Input = styled.input`
   min-height: 45px;
   font-size: 16px;
   padding-left: 10px;
-  ${TypoGraphy.Input};
   margin-top: 5px;
+  ${TypoGraphy.Input};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.color.placeHolderColor};
+  }
 `;
 
 const Title = styled.p`
