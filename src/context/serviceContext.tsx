@@ -3,27 +3,33 @@ import { createContext } from 'react';
 import { serviceContextType } from '../types/service';
 
 const initalState: serviceContextType = {
+  title: {
+    setTitle: (title: string) => {},
+  },
   user: {
-    name: '',
     setName: function (name: string): void {},
-    position: ['백엔드'],
-    addPosition: function (position: string): void {},
+    position: [undefined],
+    setPosition: function (position: string, index: number): void {},
+    addPosition: function (): void {},
     removePosition: function (index: number): void {},
-    contact: ['010-0000-1111'],
-    addContact: function (position: string): void {},
+    contact: [undefined],
+    setContact: function (position: string, index: number): void {},
+    addContact: function (): void {},
     removeContact: function (index: number): void {},
-    links: ['github.com'],
-    addLinks: function (link: string): void {},
+    links: [undefined],
+    addLinks: function (): void {},
+    setLinks: function (link, index) {},
     removeLinks: function (index: number): void {},
   },
   lookingFor: {
-    number: 2,
     setNumber: function (number: number): void {},
-    position: ['프론트엔드', 'AI'],
-    addPosition: function (position: string): void {},
+    position: [undefined],
+    setPosition: function (position, index) {},
+    setTechStack: function (techStack, index) {},
+    addPosition: function (): void {},
     removePosition: function (index: number): void {},
-    techStack: ['React', 'Panads', '이미지 처리'],
-    addTechStack: function (tech: string): void {},
+    techStack: [undefined],
+    addTechStack: function (): void {},
     removeTechStack: function (index: number): void {},
   },
 };
@@ -33,31 +39,57 @@ export const serviceContext = createContext<serviceContextType>(initalState);
 export const ServiceProvider: React.FC<{ children: React.ReactElement | React.ReactNode | JSX.Element }> = ({
   children,
 }) => {
-  const [name, setName] = useState(initalState.user.name);
+  const [title, setTitle] = useState<string | undefined>();
+  const [name, setName] = useState<string | undefined>();
   const [userPosition, setUserPosition] = useState(initalState.user.position);
   const [contact, setContact] = useState(initalState.user.contact);
   const [links, setLinks] = useState(initalState.user.links);
-  const [number, setNumber] = useState(initalState.lookingFor.number);
+  const [number, setNumber] = useState<number | undefined>();
   const [lookForPosition, setLookForPosition] = useState(initalState.lookingFor.position);
   const [techStack, setTechStack] = useState(initalState.lookingFor.techStack);
+
+  const handleTitle = (title: string): void => {
+    setTitle(title);
+  };
 
   const handleName = (name: string): void => {
     setName(name);
   };
-  const addUserPosition = (position: string): void => {
-    setUserPosition((prev) => [...prev, position]);
+
+  const handleUserPosition = (position: string, index: number): void => {
+    setUserPosition((prev) => {
+      return [...prev.slice(0, index), position, ...prev.slice(index + 1, prev.length)];
+    });
+  };
+
+  const addUserPosition = (): void => {
+    setUserPosition((prev) => [...prev, initalState.user.position[0]]);
   };
   const removeUserPosition = (index: number): void => {
     setUserPosition((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
   };
-  const addContact = (contact: string): void => {
-    setContact((prev) => [...prev, contact]);
+
+  const handleContact = (contact: string, index: number): void => {
+    setContact((prev) => {
+      return [...prev.slice(0, index), contact, ...prev.slice(index + 1, prev.length)];
+    });
+  };
+
+  const addContact = (): void => {
+    setContact((prev) => [...prev, initalState.user.contact[0]]);
   };
   const removeContact = (index: number): void => {
     setContact((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
   };
-  const addLinks = (link: string): void => {
-    setLinks((prev) => [...prev, link]);
+
+  const handleLinks = (link: string, index: number): void => {
+    setLinks((prev) => {
+      return [...prev.slice(0, index), link, ...prev.slice(index + 1, prev.length)];
+    });
+  };
+
+  const addLinks = (): void => {
+    setLinks((prev) => [...prev, initalState.user.links[0]]);
   };
   const removeLinks = (index: number): void => {
     setLinks((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
@@ -65,14 +97,28 @@ export const ServiceProvider: React.FC<{ children: React.ReactElement | React.Re
   const handleNumber = (number: number): void => {
     setNumber(number);
   };
-  const addLookForPosition = (position: string): void => {
-    setLookForPosition((prev) => [...prev, position]);
+
+  const handleLookForPosition = (position: string, index: number): void => {
+    setLookForPosition((prev) => {
+      return [...prev.slice(0, index), position, ...prev.slice(index + 1, prev.length)];
+    });
+  };
+
+  const addLookForPosition = (): void => {
+    setLookForPosition((prev) => [...prev, initalState.lookingFor.position[0]]);
   };
   const removeLookForPosition = (index: number): void => {
     setLookForPosition((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
   };
-  const addTechStack = (techStack: string): void => {
-    setTechStack((prev) => [...prev, techStack]);
+
+  const handleTechStack = (techStack: string, index: number): void => {
+    setTechStack((prev) => {
+      return [...prev.slice(0, index), techStack, ...prev.slice(index + 1, prev.length)];
+    });
+  };
+
+  const addTechStack = (): void => {
+    setTechStack((prev) => [...prev, initalState.lookingFor.techStack[0]]);
   };
   const removeTechStack = (index: number): void => {
     setTechStack((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
@@ -81,11 +127,18 @@ export const ServiceProvider: React.FC<{ children: React.ReactElement | React.Re
   return (
     <serviceContext.Provider
       value={{
+        title: {
+          title: title,
+          setTitle: handleTitle,
+        },
         user: {
           name,
           contact,
           links,
           addContact,
+          setContact: handleContact,
+          setLinks: handleLinks,
+          setPosition: handleUserPosition,
           removeContact,
           addLinks,
           removeLinks,
@@ -96,6 +149,8 @@ export const ServiceProvider: React.FC<{ children: React.ReactElement | React.Re
         },
         lookingFor: {
           number,
+          setPosition: handleLookForPosition,
+          setTechStack: handleTechStack,
           setNumber: handleNumber,
           position: lookForPosition,
           addPosition: addLookForPosition,

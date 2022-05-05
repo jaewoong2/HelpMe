@@ -10,6 +10,17 @@ const Container = styled.div<{ css?: SerializedStyles }>`
   padding: 10px 25px;
   ${TypoGraphy.Description};
   ${({ css }) => css};
+  user-select: none;
 `;
 
-export { Container };
+const TextArea = styled.textarea`
+  width: 100%;
+  margin-top: 20px;
+  height: calc(100% - 20px);
+  outline: none;
+  border: none;
+  resize: none;
+  background-color: transparent;
+`;
+
+export { Container, TextArea };

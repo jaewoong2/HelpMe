@@ -4,6 +4,7 @@ import React from 'react';
 
 type InputProps = {
   title?: string;
+  type?: HTMLInputElement['type'];
   children?: React.ReactNode | JSX.Element | React.ReactElement;
   value?: string;
   placeholder?: string;
@@ -11,13 +12,15 @@ type InputProps = {
   css?: SerializedStyles;
 };
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(({ title, placeholder, value, onChange, css }, ref) => {
-  return (
-    <Styled.Label css={css}>
-      <Styled.Title>{title}</Styled.Title>
-      <Styled.Input placeholder={placeholder ?? title} value={value} onChange={onChange} ref={ref} />
-    </Styled.Label>
-  );
-});
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ title, placeholder, value, onChange, css, type }, ref) => {
+    return (
+      <Styled.Label css={css}>
+        <Styled.Title>{title}</Styled.Title>
+        <Styled.Input type={type} placeholder={placeholder ?? title} value={value} onChange={onChange} ref={ref} />
+      </Styled.Label>
+    );
+  },
+);
 
 export default Input;
