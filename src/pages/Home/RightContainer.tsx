@@ -57,7 +57,7 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
         position: relative;
       `}
     >
-      <Title dividerColor="warning">Previw</Title>
+      <Title dividerColor="primary">Previw</Title>
       <Description
         css={css`
           overflow-y: scroll;
@@ -66,6 +66,10 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
 
           .variable {
             color: #8f8f8f;
+          }
+
+          li {
+            list-style-type: none;
           }
         `}
       >
@@ -79,7 +83,7 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
           저는 본 과정 프로젝트 진행시 이런 포지션을 맡고 싶어요
           <ul>
             {user.position.map((position, i) => (
-              <li className={position ? '' : 'variable'}>{position ?? InitialValue.user.position[i % 1]}</li>
+              <li className={position ? '' : 'variable'}>-{position ?? InitialValue.user.position[i % 1]}</li>
             ))}
           </ul>
         </div>
@@ -93,7 +97,7 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
                   target="_blank"
                   href={getLink(link ?? InitialValue.user.links[0])}
                 >
-                  {link ?? InitialValue.user.links[i % 1]}
+                  -{link ?? InitialValue.user.links[i % 1]}
                 </a>
               </li>
             ))}
@@ -109,7 +113,7 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
         <div>
           <ul>
             {lookingFor.position.map((position, i) => (
-              <li className={position ? '' : 'variable'}>{position ?? InitialValue.lookingFor.position[i % 2]}</li>
+              <li className={position ? '' : 'variable'}>-{position ?? InitialValue.lookingFor.position[i % 2]}</li>
             ))}
           </ul>
         </div>
@@ -117,7 +121,7 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
           또한, 이러한 기술스택을 갖고 있으면 해요
           <ul>
             {lookingFor.techStack.map((tech, i) => (
-              <li className={tech ? '' : 'variable'}>{tech ?? InitialValue.lookingFor.techStack[i % 3]}</li>
+              <li className={tech ? '' : 'variable'}>-{tech ?? InitialValue.lookingFor.techStack[i % 3]}</li>
             ))}
           </ul>
         </div>
@@ -125,7 +129,7 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
           아래는 제 연락처 이며, 아래의 연락처를 통해 연락 주시면 감사하겠습니다
           <ul>
             {user.contact.map((contact, i) => (
-              <li className={contact ? '' : 'variable'}>{contact ?? InitialValue.user.contact[i % 1]}</li>
+              <li className={contact ? '' : 'variable'}>-{contact ?? InitialValue.user.contact[i % 1]}</li>
             ))}
           </ul>
           연락 기다리겠습니다.
