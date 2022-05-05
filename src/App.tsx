@@ -20,6 +20,17 @@ const Main = styled.main`
   height: 100%;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 874px) {
+    max-width: unset;
+    max-height: unset;
+    padding: unset;
+    justify-content: unset;
+    margin: unset;
+
+    width: 100%;
+    height: unset;
+  }
 `;
 
 const SectionContainer = styled.div`
@@ -31,4 +42,17 @@ const SectionContainer = styled.div`
   max-height: 960px;
   padding: 50px;
   justify-content: center;
+
+  @media screen and (max-width: 874px) {
+    max-width: unset;
+    max-height: unset;
+    padding: unset;
+    justify-content: unset;
+    margin: unset;
+
+    padding: 40px 0 0 15px;
+    width: 100%;
+    height: unset;
+    flex-direction: column;
+  }
 `;

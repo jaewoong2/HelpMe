@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import InitialValue from '../../constant/InitialValue';
 import Button from '@components/Button';
 import styled from '@emotion/styled';
+import { TypoGraphy } from '@styles/typo';
 
 type RightContainerProps = serviceContextType;
 
@@ -55,14 +56,28 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
     <RightSection
       css={css`
         position: relative;
+
+        footer {
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          margin: 10px 20px;
+          ${TypoGraphy.Input};
+          color: #8f8f8f;
+
+          @media screen and (max-width: 874px) {
+            width: calc(100% - 30px);
+            margin: 10px 0;
+          }
+        }
       `}
     >
       <Title dividerColor="primary">Previw</Title>
       <Description
+        className="description"
         css={css`
           overflow-y: scroll;
           max-height: 70%;
-          height: calc(100% - 33px);
 
           .variable {
             color: #8f8f8f;
@@ -141,6 +156,7 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
         <TextArea readOnly={true} value={copyValue}></TextArea>
       </Description>
       <Button
+        className="save-btn"
         onClick={onClickSaveButton}
         css={css`
           width: 100px;
@@ -159,6 +175,7 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
       >
         저장하기
       </Button>
+      <footer>Created By @Jaewoong2</footer>
     </RightSection>
   );
 };

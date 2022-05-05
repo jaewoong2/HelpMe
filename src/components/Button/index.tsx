@@ -6,11 +6,11 @@ type ButtonProps = {
   children?: React.ReactNode | JSX.Element | React.ReactElement;
   css?: SerializedStyles;
   onClick?: () => void;
-};
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ onClick, children, css }, ref) => {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({ onClick, children, css, ...props }, ref) => {
   return (
-    <Styled.Button onClick={onClick} ref={ref} css={css}>
+    <Styled.Button onClick={onClick} ref={ref} css={css} {...props}>
       {children}
     </Styled.Button>
   );

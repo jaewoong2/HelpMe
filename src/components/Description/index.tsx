@@ -7,10 +7,9 @@ type DescriptionProps = {
   value?: string;
 } & HtmlHTMLAttributes<HTMLDivElement>;
 
-const Description: React.FC<DescriptionProps> = ({ css, value, children }) => {
+const Description: React.FC<DescriptionProps> = ({ css, value, children, ...props }) => {
   return (
-    <Container css={css}>
-      {/* <TextArea placeholder="Description" value={value} readOnly={true}></TextArea> */}
+    <Container {...props} css={css}>
       {children}
     </Container>
   );

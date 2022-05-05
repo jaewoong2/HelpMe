@@ -16,4 +16,15 @@ const Section = styled.section<{ css?: SerializedStyles }>`
   width: 50%;
   height: 100%;
   ${({ css }) => css};
+
+  @media screen and (max-width: 874px) {
+    max-width: unset;
+    max-height: unset;
+    padding: unset;
+    justify-content: unset;
+    margin: unset;
+
+    width: 80%;
+    height: unset;
+  }
 `;
