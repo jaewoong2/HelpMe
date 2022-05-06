@@ -8,27 +8,27 @@ const initalState: serviceContextType = {
   },
   user: {
     setName: function (name: string): void {},
-    position: [undefined],
+    position: [''],
     setPosition: function (position: string, index: number): void {},
     addPosition: function (): void {},
     removePosition: function (index: number): void {},
-    contact: [undefined],
+    contact: [''],
     setContact: function (position: string, index: number): void {},
     addContact: function (): void {},
     removeContact: function (index: number): void {},
-    links: [undefined],
+    links: [''],
     addLinks: function (): void {},
     setLinks: function (link, index) {},
     removeLinks: function (index: number): void {},
   },
   lookingFor: {
     setNumber: function (number: number): void {},
-    position: [undefined],
+    position: [''],
     setPosition: function (position, index) {},
     setTechStack: function (techStack, index) {},
     addPosition: function (): void {},
     removePosition: function (index: number): void {},
-    techStack: [undefined],
+    techStack: [''],
     addTechStack: function (): void {},
     removeTechStack: function (index: number): void {},
   },
@@ -39,7 +39,7 @@ export const serviceContext = createContext<serviceContextType>(initalState);
 export const ServiceProvider: React.FC<{ children: React.ReactElement | React.ReactNode | JSX.Element }> = ({
   children,
 }) => {
-  const [title, setTitle] = useState<string | undefined>();
+  const [title, setTitle] = useState<string>();
   const [name, setName] = useState<string | undefined>();
   const [userPosition, setUserPosition] = useState(initalState.user.position);
   const [contact, setContact] = useState(initalState.user.contact);
@@ -66,7 +66,7 @@ export const ServiceProvider: React.FC<{ children: React.ReactElement | React.Re
     setUserPosition((prev) => [...prev, initalState.user.position[0]]);
   };
   const removeUserPosition = (index: number): void => {
-    setUserPosition((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
+    setUserPosition((prev) => [...prev.slice(0, index), ...prev.slice(index + 1, prev.length)]);
   };
 
   const handleContact = (contact: string, index: number): void => {
@@ -79,7 +79,7 @@ export const ServiceProvider: React.FC<{ children: React.ReactElement | React.Re
     setContact((prev) => [...prev, initalState.user.contact[0]]);
   };
   const removeContact = (index: number): void => {
-    setContact((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
+    setContact((prev) => [...prev.slice(0, index), ...prev.slice(index + 1, prev.length)]);
   };
 
   const handleLinks = (link: string, index: number): void => {
@@ -92,7 +92,7 @@ export const ServiceProvider: React.FC<{ children: React.ReactElement | React.Re
     setLinks((prev) => [...prev, initalState.user.links[0]]);
   };
   const removeLinks = (index: number): void => {
-    setLinks((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
+    setLinks((prev) => [...prev.slice(0, index), ...prev.slice(index + 1, prev.length)]);
   };
   const handleNumber = (number: number): void => {
     setNumber(number);
@@ -108,7 +108,7 @@ export const ServiceProvider: React.FC<{ children: React.ReactElement | React.Re
     setLookForPosition((prev) => [...prev, initalState.lookingFor.position[0]]);
   };
   const removeLookForPosition = (index: number): void => {
-    setLookForPosition((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
+    setLookForPosition((prev) => [...prev.slice(0, index), ...prev.slice(index + 1, prev.length)]);
   };
 
   const handleTechStack = (techStack: string, index: number): void => {
@@ -121,7 +121,7 @@ export const ServiceProvider: React.FC<{ children: React.ReactElement | React.Re
     setTechStack((prev) => [...prev, initalState.lookingFor.techStack[0]]);
   };
   const removeTechStack = (index: number): void => {
-    setTechStack((prev) => prev.map((value, i) => (i === index ? '' : value)).filter((v) => !!v));
+    setTechStack((prev) => [...prev.slice(0, index), ...prev.slice(index + 1, prev.length)]);
   };
 
   return (

@@ -10,8 +10,8 @@ const Button = styled.button<{ css?: SerializedStyles }>`
   padding: 12px 2px;
   outline: none;
   color: ${({ theme }) => theme.color.addButonColor};
-  ${({ css }) => css};
   ${TypoGraphy.Input};
+  ${({ css }) => css};
 `;
 
 export { Button };

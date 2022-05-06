@@ -97,22 +97,22 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
         <div>
           저는 본 과정 프로젝트 진행시 이런 포지션을 맡고 싶어요
           <ul>
-            {user.position.map((position, i) => (
-              <li className={position ? '' : 'variable'}>-{position ?? InitialValue.user.position[i % 1]}</li>
+            {user.position.map((value, i) => (
+              <li className={value ? '' : 'variable'}>-{value !== '' ? value : InitialValue.user.position[i % 1]}</li>
             ))}
           </ul>
         </div>
         <div>
           또한, 저에 대한 소개는 아래의 링크를 통해 더욱 자세히 알아 갈 수 있어요
           <ul>
-            {user.links.map((link, i) => (
+            {user.links.map((value, i) => (
               <li>
                 <a
-                  className={link ? '' : 'variable'}
+                  className={value ? '' : 'variable'}
                   target="_blank"
-                  href={getLink(link ?? InitialValue.user.links[0])}
+                  href={getLink(value ?? InitialValue.user.links[0])}
                 >
-                  -{link ?? InitialValue.user.links[i % 1]}
+                  -{value !== '' ? value : InitialValue.user.links[i % 1]}
                 </a>
               </li>
             ))}
@@ -127,31 +127,36 @@ const RightContainer: React.FC<RightContainerProps> = ({ title, user, lookingFor
         </p>
         <div>
           <ul>
-            {lookingFor.position.map((position, i) => (
-              <li className={position ? '' : 'variable'}>-{position ?? InitialValue.lookingFor.position[i % 2]}</li>
+            {lookingFor.position.map((value, i) => (
+              <li className={value ? '' : 'variable'}>
+                -{value !== '' ? value : InitialValue.lookingFor.position[i % 2]}
+              </li>
             ))}
           </ul>
         </div>
         <div>
           또한, 이러한 기술스택을 갖고 있으면 해요
           <ul>
-            {lookingFor.techStack.map((tech, i) => (
-              <li className={tech ? '' : 'variable'}>-{tech ?? InitialValue.lookingFor.techStack[i % 3]}</li>
+            {lookingFor.techStack.map((value, i) => (
+              <li className={value ? '' : 'variable'}>
+                -{value !== '' ? value : InitialValue.lookingFor.techStack[i % 3]}
+              </li>
             ))}
           </ul>
         </div>
         <div>
           아래는 제 연락처 이며, 아래의 연락처를 통해 연락 주시면 감사하겠습니다
           <ul>
-            {user.contact.map((contact, i) => (
-              <li className={contact ? '' : 'variable'}>-{contact ?? InitialValue.user.contact[i % 1]}</li>
+            {user.contact.map((value, i) => (
+              <li className={value ? '' : 'variable'}>-{value !== '' ? value : InitialValue.user.contact[i % 1]}</li>
             ))}
           </ul>
           연락 기다리겠습니다.
         </div>
         <p>
           소프트웨어 마에스트로 13기 연수생{' '}
-          <span className={user.name ? '' : 'variable'}>{user.name ?? InitialValue.user.name} </span>드림
+          <span className={user.name ? '' : 'variable'}>{user.name !== '' ? user.name : InitialValue.user.name} </span>
+          드림
         </p>
         <TextArea readOnly={true} value={copyValue}></TextArea>
       </Description>
