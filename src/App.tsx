@@ -1,28 +1,13 @@
-import Loading from '@components/Loading';
 import styled from '@emotion/styled';
 import Home from '@pages/Home';
 import React, { useEffect, useState } from 'react';
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 4500);
-
-    return () => clearTimeout(timer);
-  }, [loading]);
-
   return (
     <Main>
-      {loading ? (
-        <Loading />
-      ) : (
-        <SectionContainer>
-          <Home />
-        </SectionContainer>
-      )}
+      <SectionContainer>
+        <Home />
+      </SectionContainer>
     </Main>
   );
 };
