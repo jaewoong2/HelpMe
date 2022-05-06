@@ -142,7 +142,6 @@ export default LeftContainer;
 const DeleteButton = styled(Button)<{ hasValue: boolean }>`
   display: ${({ hasValue }) => (hasValue ? 'block' : 'none')};
   width: 50px;
-  height: 10px;
   color: ${({ theme }) => theme.color.divderWarnBg};
   font-size: 12px;
   margin: 8px 0 10px 0;
